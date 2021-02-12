@@ -1,5 +1,8 @@
-# discover-downloaded-panos
-Ansible script to discover downloaded PAN-OS versions across fleet of hosts. Useful to check that code is staged before beginning a fleet-wide upgrade.
+# connect-fw-to-cdl
+Ansible script to run a few commands needed to connect panos firewalls to CDL.
+
+
+# documentation below needs updated from template -- ignore for now
 
 ### Requirements
 * this has been tested with python-2.7
