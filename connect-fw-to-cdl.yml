@@ -25,7 +25,7 @@
   gather_facts: false
 
   vars:
-    ansible_python_interpreter: /usr/local/bin/python
+    ansible_python_interpreter: /usr/bin/python
 
   roles:
     - role: PaloAltoNetworks.paloaltonetworks
@@ -47,16 +47,16 @@
     include_vars: "vars.yml"
     no_log: "yes"
 
-  - name: connect to each firewall and gather facts
-    panos_facts:
-      provider: "{{ fw }}"
-      gather_subset: ['system']
+#  - name: connect to each firewall and gather facts
+#    panos_facts:
+#      provider: "{{ fw }}"
+#      gather_subset: ['system']
 
 # update this to determine if name of logging service key is static or just delete all license keys
   - name: connect to each firewall and run command 'delete license key <logging service key>'
     panos_op:
       provider: "{{ fw }}"
-      cmd: "delete license key *"
+      cmd: "delete license key Log*"
     register: panos
 
   - name: connect to each firewall and run command 'request license fetch'
@@ -98,4 +98,4 @@
 #    file:
 #      path: "{{ ansible_net_serial }}_output.json"
 #      state: absent
-#
+

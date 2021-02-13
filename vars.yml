@@ -1,4 +1,4 @@
 fw:
   ip_address: "{{ inventory_hostname}}"
   username: admin
-  password: paloalto
+  password: Paloalto!123
