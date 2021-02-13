@@ -14,6 +14,9 @@ Ansible script to run a few commands needed to connect panos firewalls to CDL.
 * update hosts with list of firewall ip addresses
 * update ansible_python_interpreter below with location of python
 
+* Note: you must make sure outside of this playbook that there is a CDL license on the firewall to delete
+* Since Panorama is used, this can be configured in Panorama -> Device Deployment -> Licenses ; then Refresh
+
 ### EXECUTE
 ```
 ansible-playbook -i hosts connect-fw-to-cdl.yml
