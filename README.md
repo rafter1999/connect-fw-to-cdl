@@ -1,35 +1,22 @@
 # connect-fw-to-cdl
 Ansible script to run a few commands needed to connect panos firewalls to CDL.
 
+### REQUIRES
+* ansible (v 2.9) (sudo apt-add-respository --yes ppa:ansible/ansible ; sudo apt update ; sudo apt install ansible)
+* palo role (sudo ansible-galaxy collection install paloaltonetworks.panos)
+* python (tested with version 2.7.12)
+* python pip (tested with version 8.1.1 for 2.7) 
+* pandevice python package (sudo -H pip install pandevice)
+ 
 
-# documentation below needs updated from template -- ignore for now
+### STEPS
+* update vars.yml with valid user/password
+* update hosts with list of firewall ip addresses
+* update ansible_python_interpreter below with location of python
 
-### Requirements
-* this has been tested with python-2.7
-* you must have 'jq' tooling installed: `sudo apt install jq`
-* the file `output.csv` must exist (empty or not) in the playbook folder. There is a task that will create this if it is missing. Contents will be replaced when the playbook is run so save it elsewhere if you want to keep a copy.
-
-### Usage
-* edit `hosts` file to include ip addresses of your ngfw to check
-* edit `vars.yml` to include a valid username/password for your fleet
-* run: 
-``` 
-ansible-playbook -i hosts ./pb_gather-firmware.yml
+### EXECUTE
 ```
-review results in output.csv
-
-If you want to see hosts that _don't_ contain a particular version of PAN-OS, you can use
-``` 
-grep -v 8.0.0 output.csv
-```
-
-### Dependency notes
-Dependency installation may fail due to permissions issue (read the error!)
-You can fix this with:
-```
-pip install --user pan-python
-pip install --user pandevice
-pip install --user xmltodict
+ansible-playbook -i hosts connect-fw-to-cdl.yml
 ```
 
 _This code is my own. Provided without warranty or affilitation with Palo Alto Networks._
